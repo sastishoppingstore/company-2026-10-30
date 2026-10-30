@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-navy-50: #f3f7fc;
+  --color-navy-100: #e4edf8;
+  --color-navy-200: #c7d8ee;
+  --color-navy-300: #9bb6dc;
+  --color-navy-400: #6a8fc4;
+  --color-navy-500: #456da8;
+  --color-navy-600: #33558a;
+  --color-navy-700: #27456f;
+  --color-navy-800: #1b3255;
+  --color-navy-900: #0f2242;
+  --color-navy-950: #08152b;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dde8ff;
+  --color-brand-200: #c0d4ff;
+  --color-brand-300: #93b6ff;
+  --color-brand-400: #5e8fff;
+  --color-brand-500: #2e6bff;
+  --color-brand-600: #1a4fe0;
+  --color-brand-700: #163eb4;
+  --color-brand-800: #17358f;
+  --color-brand-900: #183071;
+
+  --color-canvas: #f4f7fb;
+  --color-hairline: #e3e9f2;
+
+  --shadow-card: 0 1px 2px rgba(15, 34, 66, 0.04), 0 10px 30px -18px rgba(15, 34, 66, 0.35);
+  --shadow-lift: 0 2px 4px rgba(15, 34, 66, 0.05), 0 24px 48px -28px rgba(15, 34, 66, 0.45);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-navy-950);
+  }
+}
+
+@layer components {
+  .app-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+  .app-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .app-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  .app-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+  .grid-paper {
+    background-image:
+      linear-gradient(rgba(15, 34, 66, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 34, 66, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+.map-shell .leaflet-container {
+  font-family: var(--font-sans);
+  background: #e8eef7;
+}
+
+.map-shell .leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.rna-marker {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(8, 21, 43, 0.35);
+}
+
+.rna-marker span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+@keyframes rna-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 107, 255, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(46, 107, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 107, 255, 0); }
+}
+
+.rna-live-pulse { animation: rna-pulse 1.8s infinite; }
+
+@keyframes rna-shimmer {
+  0% { background-position: -420px 0; }
+  100% { background-position: 420px 0; }
+}
+
+.rna-skeleton {
+  background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 50%, #eef2f7 75%);
+  background-size: 840px 100%;
+  animation: rna-shimmer 1.4s infinite linear;
+}
